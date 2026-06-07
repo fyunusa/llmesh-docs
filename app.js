@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'observability': 'observability.md',
         'events': 'events.md',
         'rag': 'rag.md',
+        'evals': 'evals.md',
         'laravel': 'laravel.md'
     };
 
