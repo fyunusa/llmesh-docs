@@ -8,9 +8,16 @@ LLMesh conforms to the **PSR-14 Event Dispatcher** specification. The core engin
 
 The following event classes are dispatched during execution:
 
+### Text & Object Generation Events
 * **`LLMesh\Core\Events\GenerationStarted`**: Fired immediately before the provider is called. Contains the provider name and the request options.
 * **`LLMesh\Core\Events\GenerationCompleted`**: Fired after the provider responds successfully. Contains the provider name, response object, and duration in milliseconds.
 * **`LLMesh\Core\Events\GenerationFailed`**: Fired if the API call throws an exception. Contains the provider name and the thrown exception.
+
+### Structured Extraction Events
+* **`LLMesh\Core\Events\ExtractionStarted`**: Fired immediately before structured extraction starts. Contains `modelClass`, `providerName`, and `inputLength` (character count of the input text).
+* **`LLMesh\Core\Events\ExtractionCompleted`**: Fired after structured extraction succeeds. Contains `modelClass`, `result` (typed concrete `LLMModel` instance), `attemptsUsed`, and `durationMs`.
+* **`LLMesh\Core\Events\ExtractionRetrying`**: Fired when an extraction attempt fails and self-correction is triggered. Contains `modelClass`, `attempt` (index of attempt), and `errorMessage`.
+* **`LLMesh\Core\Events\ExtractionFailed`**: Fired when all extraction attempts are exhausted and validation fails. Contains `modelClass`, `totalAttempts`, and `lastError`.
 
 ---
 
